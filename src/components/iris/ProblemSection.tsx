@@ -75,16 +75,18 @@ export function ProblemSection() {
     el.addEventListener("touchstart", onEnter, { passive: true });
     el.addEventListener("touchend", onLeave, { passive: true });
 
+    const scrollToCard = (i: number) => {
+      const cards = el.querySelectorAll<HTMLElement>("[data-card]");
+      const card = cards[i];
+      if (!card) return;
+      el.scrollTo({ left: card.offsetLeft - el.offsetLeft, behavior: "smooth" });
+    };
+
     const id = window.setInterval(() => {
       if (paused) return;
       const cards = el.querySelectorAll<HTMLElement>("[data-card]");
       if (!cards.length) return;
-      const next = (index + 1) % cards.length;
-      cards[next].scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "start",
-      });
+      scrollToCard((index + 1) % cards.length);
     }, 4200);
 
     return () => {
@@ -100,7 +102,9 @@ export function ProblemSection() {
     const el = scrollerRef.current;
     if (!el) return;
     const cards = el.querySelectorAll<HTMLElement>("[data-card]");
-    cards[i]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+    const card = cards[i];
+    if (!card) return;
+    el.scrollTo({ left: card.offsetLeft - el.offsetLeft, behavior: "smooth" });
   };
 
   return (
