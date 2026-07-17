@@ -14,9 +14,9 @@ const logos = [
 export function IntegrationsSection() {
   const row = [...logos, ...logos];
   return (
-    <section id="integrations" className="py-32 overflow-hidden">
+    <section id="integrations" className="py-24 md:py-32 overflow-hidden">
       <Reveal>
-        <h2 className="text-center text-4xl md:text-5xl font-black tracking-tight font-[family-name:var(--font-display)] leading-[1.05] mb-16 px-6">
+        <h2 className="text-center text-3xl sm:text-4xl md:text-5xl font-black tracking-tight font-[family-name:var(--font-display)] leading-[1.05] mb-12 md:mb-16 px-6">
           Integrates with everything you use.
         </h2>
       </Reveal>

@@ -17,13 +17,13 @@ const features = [
 
 export function VoiceSection() {
   return (
-    <section id="voice" className="py-32 px-6 md:px-10">
+    <section id="voice" className="py-24 md:py-32 px-6 md:px-10">
       <div className="max-w-4xl mx-auto text-center">
         <Reveal>
           <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-tesla-red mb-6">
             Synthesized Empathy
           </p>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight font-[family-name:var(--font-display)] leading-[1.05]">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight font-[family-name:var(--font-display)] leading-[1.05]">
             Uncannily human voice synthesis.
           </h2>
           <p className="mt-6 text-lg text-tesla-gray max-w-2xl mx-auto leading-relaxed">

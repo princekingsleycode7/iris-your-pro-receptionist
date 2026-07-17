@@ -2,8 +2,8 @@ import { Reveal } from "./Reveal";
 
 export function ScaleSection() {
   return (
-    <section id="scale" className="py-32 px-6 md:px-10 bg-stone-50">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <section id="scale" className="py-24 md:py-32 px-6 md:px-10 bg-stone-50">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         <Reveal>
           <div className="relative aspect-square rounded-3xl bg-white ring-1 ring-black/5 overflow-hidden">
             {/* Grid globe visual */}
@@ -44,7 +44,7 @@ export function ScaleSection() {
           <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-tesla-red mb-6">
             Enterprise Scale
           </p>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight font-[family-name:var(--font-display)] leading-[1.05]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight font-[family-name:var(--font-display)] leading-[1.05]">
             Built for the Fortune 500.
           </h2>
           <p className="mt-6 text-tesla-gray leading-relaxed max-w-lg">
