@@ -37,8 +37,8 @@ export function Footer() {
         </div>
 
         {/* Oversized bold wordmark */}
-        <div className="select-none pointer-events-none">
-          <h2 className="text-[18vw] md:text-[16vw] leading-[0.85] font-black tracking-[-0.04em] font-[family-name:var(--font-display)] text-tesla-dark/[0.06] whitespace-nowrap">
+        <div className="select-none pointer-events-none overflow-hidden">
+          <h2 className="text-[22vw] md:text-[16vw] leading-[0.85] font-black tracking-[-0.04em] font-[family-name:var(--font-display)] text-tesla-dark/[0.06] whitespace-nowrap text-center">
             IRIS BY TESLA
           </h2>
         </div>
