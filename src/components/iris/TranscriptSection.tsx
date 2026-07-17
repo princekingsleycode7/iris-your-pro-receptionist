@@ -61,16 +61,16 @@ export function TranscriptSection() {
     <section
       id="transcript"
       ref={ref}
-      className="py-32 px-6 md:px-10 bg-tesla-dark text-white"
+      className="py-24 md:py-32 px-6 md:px-10 bg-tesla-dark text-white"
     >
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-3 mb-12">
+        <div className="flex items-center gap-3 mb-10 md:mb-12">
           <span className="w-2 h-2 rounded-full bg-tesla-red animate-pulse" />
-          <span className="text-[10px] font-mono uppercase tracking-[0.35em] text-white/50">
-            Live Session Transcript · Iris.core
+          <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/50">
+            Live Session · Iris.core
           </span>
         </div>
-        <h2 className="text-4xl md:text-5xl font-black tracking-tight font-[family-name:var(--font-display)] leading-[1.05] mb-16 max-w-2xl">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight font-[family-name:var(--font-display)] leading-[1.05] mb-12 md:mb-16 max-w-2xl">
           A real call. Resolved in eleven seconds.
         </h2>
 
@@ -91,7 +91,7 @@ export function TranscriptSection() {
                   {isIris ? "Iris" : "Caller"} · {line.time}
                 </div>
                 <p
-                  className={`text-lg md:text-xl leading-relaxed ${
+                  className={`text-base md:text-xl leading-relaxed break-words ${
                     isIris ? "text-white" : "text-white/70"
                   }`}
                 >
