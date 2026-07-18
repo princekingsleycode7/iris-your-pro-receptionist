@@ -19,7 +19,7 @@ export function Hero() {
         </p>
         <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 justify-center sm:flex-wrap">
           <a
-            href="/reserve"
+            href="#cta"
             className="bg-tesla-dark text-white px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all"
           >
             Reserve Access
