@@ -84,7 +84,7 @@ export function Nav() {
 
           <div className="flex items-center gap-2 shrink-0">
             <a
-              href="#cta"
+              href="/reserve"
               className={`bg-tesla-dark text-white rounded-full font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all ${
                 scrolled ? "px-4 py-1.5 text-[10px]" : "px-5 py-2 text-[11px]"
               }`}
@@ -149,7 +149,7 @@ export function Nav() {
               </a>
             ))}
             <a
-              href="#cta"
+              href="/reserve"
               onClick={() => setOpen(false)}
               className="mt-10 bg-tesla-dark text-white px-6 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-center hover:bg-tesla-red transition-colors"
             >
