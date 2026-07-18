@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { useActiveSection } from "./useActiveSection";
 
 const LINKS = [
@@ -83,14 +84,14 @@ export function Nav() {
           )}
 
           <div className="flex items-center gap-2 shrink-0">
-            <a
-              href="#cta"
+            <Link
+              to="/contact"
               className={`bg-tesla-dark text-white rounded-full font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all ${
                 scrolled ? "px-4 py-1.5 text-[10px]" : "px-5 py-2 text-[11px]"
               }`}
             >
               Reserve
-            </a>
+            </Link>
 
             {/* Hamburger — mobile + tablet */}
             <button
@@ -148,13 +149,13 @@ export function Nav() {
                 {l.label}
               </a>
             ))}
-            <a
-              href="#cta"
+            <Link
+              to="/contact"
               onClick={() => setOpen(false)}
               className="mt-10 bg-tesla-dark text-white px-6 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-center hover:bg-tesla-red transition-colors"
             >
               Reserve Access
-            </a>
+            </Link>
           </div>
         </div>
       </div>
