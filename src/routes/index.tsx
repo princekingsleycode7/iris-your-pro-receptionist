@@ -5,6 +5,7 @@ import { ProblemSection } from "@/components/iris/ProblemSection";
 import { VoiceSection } from "@/components/iris/VoiceSection";
 import { ScaleSection } from "@/components/iris/ScaleSection";
 import { TranscriptSection } from "@/components/iris/TranscriptSection";
+import { CallCTA } from "@/components/iris/CallCTA";
 import { IntegrationsSection } from "@/components/iris/IntegrationsSection";
 import { CTASection } from "@/components/iris/CTASection";
 import { Footer } from "@/components/iris/Footer";
@@ -22,6 +23,7 @@ function Index() {
       <VoiceSection />
       <ScaleSection />
       <TranscriptSection />
+      <CallCTA />
       <IntegrationsSection />
       <CTASection />
       <Footer />

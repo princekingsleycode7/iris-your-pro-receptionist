@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { IrisOrb } from "./IrisOrb";
 
 export function Hero() {
@@ -18,12 +19,12 @@ export function Hero() {
           wait, understand the nuance, and solve the problem at Tesla speed.
         </p>
         <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 justify-center sm:flex-wrap">
-          <a
-            href="#cta"
+          <Link
+            to="/contact"
             className="bg-tesla-dark text-white px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all"
           >
             Reserve Access
-          </a>
+          </Link>
           <a
             href="#transcript"
             className="border border-tesla-dark/15 text-tesla-dark px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-tesla-dark hover:text-white transition-all"
