@@ -31,16 +31,10 @@ export function CTASection() {
             </p>
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3">
               <a
-                href="#"
+                href="/sales"
                 className="bg-white text-tesla-dark px-8 sm:px-10 py-4 rounded-full text-xs font-bold uppercase tracking-[0.15em] text-center hover:bg-tesla-red hover:text-white transition-all"
               >
                 Contact Sales
-              </a>
-              <a
-                href="#"
-                className="border border-white/20 text-white px-8 sm:px-10 py-4 rounded-full text-xs font-bold uppercase tracking-[0.15em] text-center hover:bg-white/10 transition-all"
-              >
-                Download Whitepaper
               </a>
             </div>
           </div>
