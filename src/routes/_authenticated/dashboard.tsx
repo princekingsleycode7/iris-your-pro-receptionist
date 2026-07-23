@@ -42,7 +42,7 @@ function DashboardPage() {
 
   return (
     <DashboardLayout email={user?.email ?? undefined}>
-      <Suspense fallback={<div className="text-sm text-neutral-500">Loading your dashboard…</div>}>
+      <Suspense fallback={<div className="p-6 text-sm text-neutral-500">Loading your dashboard…</div>}>
         <DashboardContent />
       </Suspense>
     </DashboardLayout>
@@ -67,25 +67,28 @@ function DashboardContent() {
   const o = overview.data;
 
   return (
-    <>
+    <div className="space-y-6">
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Overview</h1>
         <p className="mt-1 text-sm text-neutral-500">
           Here's what your receptionist has been up to.
         </p>
       </div>
+
       <StatusBanner
         status={o.status}
         weeklyCalls={o.weeklyCalls}
         weeklyAppointments={o.weeklyAppointments}
         weeklyEscalated={o.weeklyEscalated}
       />
+
       <MetricCards
         callsToday={o.callsToday}
         appointmentsToday={o.appointmentsToday}
         revenueOppsCentsThisWeek={o.revenueOppsCentsThisWeek}
         missedPreventedThisWeek={o.missedPreventedThisWeek}
       />
+
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-2">
           <LiveActivityFeed initial={activity.data as any} />
@@ -94,6 +97,6 @@ function DashboardContent() {
           <RecentCallsTable calls={calls.data as any} />
         </div>
       </div>
-    </>
+    </div>
   );
 }
