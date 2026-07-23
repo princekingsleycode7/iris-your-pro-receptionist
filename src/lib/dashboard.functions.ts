@@ -23,14 +23,7 @@ function startOfWeek() {
   return d.toISOString();
 }
 
-async function seedIfEmpty(
-  supabase: Awaited<
-    ReturnType<typeof requireSupabaseAuth._middlewareFn>
-  > extends never
-    ? never
-    : any,
-  userId: string,
-) {
+async function seedIfEmpty(supabase: any, userId: string) {
   const { count } = await supabase
     .from("calls")
     .select("id", { count: "exact", head: true })
