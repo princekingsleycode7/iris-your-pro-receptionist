@@ -1,52 +1,78 @@
-## Iris by Tesla — Landing Page Build Plan
+## Goal
 
-Replace the placeholder index route with a fully animated, single-page landing for Iris, Tesla's enterprise AI receptionist. Follow the chosen "Tesla industrial minimalism" direction exactly: white base, `#171A20` charcoal, `#E81919` accent, Outfit display + Inter body, generous white space, sharp geometric type.
+Add a new `/dashboard` route to the existing Iris site — a clean, trustworthy B2B SaaS control panel for a non-technical business owner. Zero AI jargon. All copy is about calls, appointments, revenue.
 
-### Design tokens (src/styles.css)
-- Add `--color-tesla-dark: #171A20`, `--color-tesla-red: #E81919`, `--color-tesla-gray: #393C41` under `@theme inline`.
-- Register `--font-display` (Outfit) and `--font-sans` (Inter).
-- Add keyframes: `fade-up`, `pulse-ring`, `waveform`, `marquee`, `float` — exposed as `animate-*` utilities.
+## Scope & Stack
 
-### Fonts
-- Load Outfit (300–900) + Inter (300–800) via `<link>` tags in `src/routes/__root.tsx` head (never `@import` in CSS, per Tailwind v4 rule).
+- New route only. Landing page, `/contact`, and Iris components untouched.
+- Built in the existing stack: TanStack Start + React + Tailwind v4.
+- Lovable Cloud enabled for real, persisted data + auth.
 
-### Head metadata (__root.tsx)
-- Title: "Iris by Tesla — The AI Receptionist for Enterprise"
-- Description: "Iris is Tesla's autonomous AI receptionist. Zero wait. Human-grade voice. Enterprise scale."
-- Matching og:title/description, og:type=website, twitter:card=summary_large_image.
+## Enable Lovable Cloud
 
-### Route: `src/routes/index.tsx`
-Rewrite the placeholder. Compose from small components in `src/components/iris/`:
+Enable Cloud so we can persist calls, appointments, activity events, and gate the dashboard behind sign-in.
 
-1. `Nav.tsx` — fixed, translucent-on-scroll, TESLA wordmark + inline nav links + "Reserve Access" pill.
-2. `Hero.tsx` — full-viewport centered hero. Eyebrow "Introducing Iris", H1 "Beyond Human.", subhead, animated Iris interface visual (concentric pulse rings + animated waveform bars + soft radial glow) instead of the placeholder image. Staggered fade-up entrance.
-3. `ProblemSection.tsx` — dark charcoal, two-column: copy + metric list (0ms wait, 100% context) with red left borders + animated neural-orb visual (SVG concentric rings + rotating dots).
-4. `VoiceSection.tsx` — light, centered eyebrow "Synthesized Empathy", H2, three feature cards (Adaptive Tone, Multi-Lingual, No Scripts).
-5. `ScaleSection.tsx` — stone-50, two-column: animated globe/grid SVG + copy + red-dot bullet list (SOC2, E2E encrypted, Custom API).
-6. `TranscriptSection.tsx` — live call transcript demo with typewriter effect on scroll (Caller ↔ Iris exchange showing a real-world resolution).
-7. `IntegrationsSection.tsx` — "Integrates with everything you use." horizontal marquee of partner wordmarks (Salesforce, Zendesk, Hubspot, ServiceNow, Slack, SAP).
-8. `CTASection.tsx` — dark rounded card "The Future is Calling." + Contact Sales button + subtle animated wireframe backdrop.
-9. `Footer.tsx` — oversized "IRIS BY TESLA" wordmark at ~12vw in `text-tesla-dark/5`, 4-column sitemap, legal bar.
+## Data model (migration)
 
-Note on count: the request specifies hero + 6 sections + footer. Sections 3–8 above = 6 sections (Problem, Voice, Scale, Transcript, Integrations, CTA). Hero and Footer are separate.
+All tables in `public`, scoped per business owner via `user_id = auth.uid()`, RLS enabled, GRANTs to `authenticated` + `service_role` (no `anon`).
 
-### Motion / smoothness
-- All entrance animations via a lightweight `useInView` hook (`IntersectionObserver`) toggling a `data-visible` attribute; CSS handles the transitions with `cubic-bezier(0.2, 0.8, 0.2, 1)` and staggered delays.
-- Hero pulse rings + waveform bars: pure CSS keyframes (already smooth, no JS).
-- Transcript: typewriter effect using `requestAnimationFrame`, triggered when the section enters viewport.
-- Metric counters (0ms, 100%, etc.): count-up on enter via rAF.
-- Smooth-scroll for in-page nav anchors via `scroll-behavior: smooth` on `html`.
-- Respect `prefers-reduced-motion` — disable non-essential animations.
+- `calls` — id, user_id, caller_name, phone, started_at, duration_seconds, outcome (`appointment_booked` | `transferred` | `voicemail` | `missed` | `info_only`), revenue_opportunity_cents, summary, recording_url
+- `appointments` — id, user_id, customer_name, phone, scheduled_at, service, status, created_from_call_id
+- `activity_events` — id, user_id, kind (`call_live` | `call_completed` | `appointment_booked` | `transferred` | `missed`), title, meta jsonb, created_at
+- `receptionist_status` — one row per user_id: status (`online` | `degraded` | `offline`), updated_at
 
-### Assets
-- No stock photos. Replace every `data-lov-image-placeholder` from the prototype with pure CSS/SVG visuals (waveform, pulse rings, neural orb, grid globe, wireframe backdrop). Keeps the page fast and on-brand.
+Metrics for the hero cards are computed on the fly from `calls` / `appointments` (today/this-week windows).
 
-### Files touched
-- `src/styles.css` — theme tokens, keyframes, `@utility` classes.
-- `src/routes/__root.tsx` — font `<link>`s + real head metadata.
-- `src/routes/index.tsx` — new landing composition.
-- `src/components/iris/*.tsx` — Nav, Hero, ProblemSection, VoiceSection, ScaleSection, TranscriptSection, IntegrationsSection, CTASection, Footer, plus a `useInView` hook.
+## Routes & Auth
 
-### Out of scope
-- No backend, no forms wired to storage, no auth. "Reserve Access" and "Contact Sales" are visual CTAs only.
-- No routing beyond `/`.
+- Dashboard lives under the managed `_authenticated/` layout so hard-refresh works: `src/routes/_authenticated/dashboard.tsx`.
+- Sign-in via the existing/managed auth flow (email + password, plus Google through the Lovable broker). If `/auth` doesn't exist yet, add a minimal `src/routes/auth.tsx`.
+- No auth gate on landing or `/contact`.
+
+## Server functions (all `.functions.ts`, `requireSupabaseAuth`)
+
+- `getDashboardOverview` — returns status banner text + 4 hero-card metrics (calls today, appointments today, revenue opps captured this week, missed calls prevented this week).
+- `getLiveActivity` — latest 10 activity events, realtime-subscribable.
+- `getRecentCalls` — last 25 calls with outcome + duration.
+- `seedDemoData` — one-shot: if the signed-in user has zero calls, insert a realistic demo dataset so the dashboard is immediately populated. Called from the loader.
+
+## UI components (all new, under `src/components/dashboard/`)
+
+Design: white bg, subtle gray borders (`border-neutral-200`), generous spacing, Inter typography, green for healthy, amber/red only for actionable alerts. No Tesla-red branding on this route — it's a distinct product surface.
+
+- `DashboardLayout.tsx` — responsive shell
+  - Desktop (`lg+`): fixed left sidebar (240px) with logo, nav items (Overview, Calls, Appointments, Settings), user chip at bottom. Main content `max-w-6xl` with generous padding.
+  - Mobile: top bar with hamburger + business name; fixed bottom nav (Home / Calls / Appts / More) with active state. Hamburger opens a slide-in drawer.
+  - Vanilla React state (`useState`) for menu toggle — matches the "basic JS to toggle" ask.
+- `StatusBanner.tsx` — full-width rounded banner. Green dot + "Your AI Receptionist is working normally." Subtext with real counts from `getDashboardOverview`. Amber variant when `receptionist_status` != online.
+- `MetricCards.tsx` — grid `grid-cols-2 lg:grid-cols-4`, one `MetricCard` per stat with emoji icon, label, big number, subtle trend line/delta. Rounded, bordered, hover elevates.
+- `LiveActivityFeed.tsx` — "Live Activity" heading with pulsing green dot. Vertical list of events with left status indicator, title, subtext, relative timestamp. Live rows (`call_live`) show a subtle pulse and duration ticking. Subscribes to `activity_events` via Supabase realtime.
+- `RecentCallsTable.tsx` — "Recent Calls & Follow-ups". On desktop: table with Customer / Time / Outcome pill / Duration / Actions. On mobile: stacked card per row. Actions per row: `▶ Listen`, `📄 Read Summary` (opens a shadcn Sheet with the call summary), and a prominent `📞 Call Back` (only for `missed` outcome; uses `tel:` link).
+
+## Page composition
+
+`src/routes/_authenticated/dashboard.tsx`:
+
+```
+DashboardLayout
+├─ StatusBanner
+├─ MetricCards
+├─ LiveActivityFeed
+└─ RecentCallsTable
+```
+
+Loader primes TanStack Query via `ensureQueryData` for overview + recent calls + live activity; components read with `useSuspenseQuery`. `errorComponent` + `notFoundComponent` set. Route `head()` gets its own title/description: "Dashboard — Iris".
+
+## Landing page link
+
+Add a small "Sign in" / "Dashboard" link in the existing Nav (desktop + mobile menu) that goes to `/dashboard`. Everything else on landing is untouched.
+
+## Out of scope
+
+- Real telephony integration, recordings playback (buttons open a placeholder Sheet).
+- Settings pages, billing, team management.
+- Notifications, exports.
+
+## Verification
+
+After build: sign in, hit `/dashboard`, confirm seed data appears, banner is green, metrics render, activity feed streams a new row when inserted, table actions work, mobile layout uses bottom nav + hamburger drawer with no horizontal scroll at 375px.
