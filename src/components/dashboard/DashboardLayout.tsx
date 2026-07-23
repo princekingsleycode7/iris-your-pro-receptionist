@@ -14,9 +14,9 @@ import { supabase } from "@/integrations/supabase/client";
 
 const NAV = [
   { label: "Overview", icon: LayoutDashboard, to: "/dashboard", active: true },
-  { label: "Calls", icon: PhoneCall, to: "/dashboard", active: false },
-  { label: "Appointments", icon: CalendarDays, to: "/dashboard", active: false },
-  { label: "Settings", icon: Settings, to: "/dashboard", active: false },
+  { label: "Calls", icon: PhoneCall, to: "/calls", active: false },
+  { label: "Appointments", icon: CalendarDays, to: "/appointments", active: false },
+  { label: "Settings", icon: Settings, to: "/settings", active: false },
 ];
 
 export function DashboardLayout({ children, email }: { children: ReactNode; email?: string }) {
