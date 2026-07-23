@@ -17,6 +17,7 @@ function startOfToday() {
   d.setHours(0, 0, 0, 0);
   return d.toISOString();
 }
+
 function startOfWeek() {
   const d = new Date();
   d.setDate(d.getDate() - 7);
@@ -28,6 +29,7 @@ async function seedIfEmpty(supabase: any, userId: string) {
     .from("calls")
     .select("id", { count: "exact", head: true })
     .eq("user_id", userId);
+    
   if ((count ?? 0) > 0) return;
 
   const now = Date.now();
@@ -62,6 +64,7 @@ async function seedIfEmpty(supabase: any, userId: string) {
     { kind: "missed", title: "Missed call flagged for callback", subtitle: "David Okoye · high-value" },
     { kind: "call_completed", title: "Call completed with Elena Rossi", subtitle: "Info only" },
   ].map((a) => ({ ...a, user_id: userId }));
+  
   await supabase.from("activity_events").insert(activity);
 
   const appts = (inserted ?? [])
@@ -75,6 +78,7 @@ async function seedIfEmpty(supabase: any, userId: string) {
       status: "confirmed",
       created_from_call_id: c.id,
     }));
+    
   if (appts.length) await supabase.from("appointments").insert(appts);
 
   await supabase
@@ -128,6 +132,7 @@ export const getLiveActivity = createServerFn({ method: "GET" })
       .eq("user_id", context.userId)
       .order("created_at", { ascending: false })
       .limit(10);
+      
     return data ?? [];
   });
 
@@ -140,5 +145,6 @@ export const getRecentCalls = createServerFn({ method: "GET" })
       .eq("user_id", context.userId)
       .order("started_at", { ascending: false })
       .limit(25);
+      
     return data ?? [];
   });
