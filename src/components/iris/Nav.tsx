@@ -85,6 +85,14 @@ export function Nav() {
 
           <div className="flex items-center gap-2 shrink-0">
             <Link
+              to="/dashboard"
+              className={`hidden sm:inline-flex text-tesla-dark/80 hover:text-tesla-red font-semibold uppercase tracking-[0.15em] transition-colors ${
+                scrolled ? "text-[10px]" : "text-[11px]"
+              }`}
+            >
+              Dashboard
+            </Link>
+            <Link
               to="/contact"
               className={`bg-tesla-dark text-white rounded-full font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all ${
                 scrolled ? "px-4 py-1.5 text-[10px]" : "px-5 py-2 text-[11px]"
@@ -92,6 +100,7 @@ export function Nav() {
             >
               Reserve
             </Link>
+
 
             {/* Hamburger — mobile + tablet */}
             <button
