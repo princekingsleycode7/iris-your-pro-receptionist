@@ -148,6 +148,48 @@ export type Database = {
         }
         Relationships: []
       }
+      user_settings: {
+        Row: {
+          cal_com_api_key: string
+          cal_com_event_type_id: string
+          created_at: string
+          greeting: string
+          id: string
+          receptionist_name: string
+          system_prompt: string
+          timezone: string
+          transfer_phone_number: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          cal_com_api_key?: string
+          cal_com_event_type_id?: string
+          created_at?: string
+          greeting?: string
+          id?: string
+          receptionist_name?: string
+          system_prompt?: string
+          timezone?: string
+          transfer_phone_number?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          cal_com_api_key?: string
+          cal_com_event_type_id?: string
+          created_at?: string
+          greeting?: string
+          id?: string
+          receptionist_name?: string
+          system_prompt?: string
+          timezone?: string
+          transfer_phone_number?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
