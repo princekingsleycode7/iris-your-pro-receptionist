@@ -1,17 +1,7 @@
-import { useEffect, useState } from "react";
+import { createElement, useEffect, useState } from "react";
 
 const AGENT_ID = "agent_9401ky6jnb3betyr39bprns2q225";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "elevenlabs-convai": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > & { "agent-id": string };
-    }
-  }
-}
 
 /** Floating voice widget — client-only to avoid SSR/hydration issues. */
 export function ConvaiWidget() {
