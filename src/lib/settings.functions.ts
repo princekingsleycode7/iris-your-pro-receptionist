@@ -39,7 +39,9 @@ export const getSettings = createServerFn({ method: "GET" })
 
 export const updateSettings = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .handler(async ({ context, data }: { context: any; data: any }) => {
+  .inputValidator((data: Partial<ReceptionistSettings>) => data)
+  .handler(async ({ context, data }) => {
+
     const { supabase, userId } = context;
 
     const { error } = await supabase
