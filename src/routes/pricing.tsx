@@ -146,7 +146,7 @@ function PricingPage() {
       <section className="px-5 md:px-10 pb-20">
         <div className="max-w-7xl mx-auto grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {PLANS.map((p, i) => (
-            <Reveal key={p.name} delay={i * 80}>
+            <Reveal key={p.name} delay={i * 80} className="h-full">
               <div
                 className={`h-full flex flex-col rounded-3xl p-7 border transition-all duration-300 hover:-translate-y-1 ${
                   p.featured
