@@ -1,78 +1,58 @@
 ## Goal
 
-Add a new `/dashboard` route to the existing Iris site — a clean, trustworthy B2B SaaS control panel for a non-technical business owner. Zero AI jargon. All copy is about calls, appointments, revenue.
+Rebrand the site from Tesla/Iris to **Clova** (Iris stays as the receptionist's name), rewrite the hero for 5-second comprehension, add a pricing page, replace the footer, and embed the ElevenLabs voice widget.
 
-## Scope & Stack
+## 1. Brand swap: Tesla → Clova
 
-- New route only. Landing page, `/contact`, and Iris components untouched.
-- Built in the existing stack: TanStack Start + React + Tailwind v4.
-- Lovable Cloud enabled for real, persisted data + auth.
+- Register the uploaded shell mark (`android-chrome-512x512.png`) as a Lovable asset and use it as the logo in the nav and footer, next to the wordmark **CLOVA**. Also set it as the site favicon.
+- Replace every "TESLA" wordmark, "Iris by Tesla", "Designed in California", and all Elon Musk / Tesla AI references across Nav, Footer, CTA, and section copy.
+- Keep the existing accent-red/near-black palette and type system (renaming the internal token names is not required; only visible branding changes).
+- Update page titles/meta on `/`, `/contact`, and the new `/pricing`.
 
-## Enable Lovable Cloud
+## 2. Hero rewrite (`Hero.tsx`)
 
-Enable Cloud so we can persist calls, appointments, activity events, and gate the dashboard behind sign-in.
+Two-column on desktop, stacked on mobile.
 
-## Data model (migration)
+Left:
 
-All tables in `public`, scoped per business owner via `user_id = auth.uid()`, RLS enabled, GRANTs to `authenticated` + `service_role` (no `anon`).
+- H1: **Never Miss Another Customer Again.**
+- Sub: "Iris answers calls instantly, books appointments, qualifies leads, and delights your customers—day and night—so you never lose business to missed calls."
+- Primary CTA → **Try Iris Free for 7 Days** (links to `/pricing`), with microcopy "No credit card required. Fully set up for your business. Cancel anytime."
+- Secondary CTA → **Listen to Iris in Action** (scrolls to the live-call section).
 
-- `calls` — id, user_id, caller_name, phone, started_at, duration_seconds, outcome (`appointment_booked` | `transferred` | `voicemail` | `missed` | `info_only`), revenue_opportunity_cents, summary, recording_url
-- `appointments` — id, user_id, customer_name, phone, scheduled_at, service, status, created_from_call_id
-- `activity_events` — id, user_id, kind (`call_live` | `call_completed` | `appointment_booked` | `transferred` | `missed`), title, meta jsonb, created_at
-- `receptionist_status` — one row per user_id: status (`online` | `degraded` | `offline`), updated_at
+Right:
 
-Metrics for the hero cards are computed on the fly from `calls` / `appointments` (today/this-week windows).
+- Large "image of Iris": the uploaded headset receptionist image, presented as a dimensional composition — soft depth shadow, layered glow/ring backdrop behind her, subtle parallax/float on scroll and pointer move.
+- Beneath her: a **🟢 Online** status pill (pulsing dot).
+- The existing orb animation moves behind/below as a secondary accent rather than the main hero visual.
 
-## Routes & Auth
+## 3. New `/pricing` page
 
-- Dashboard lives under the managed `_authenticated/` layout so hard-refresh works: `src/routes/_authenticated/dashboard.tsx`.
-- Sign-in via the existing/managed auth flow (email + password, plus Google through the Lovable broker). If `/auth` doesn't exist yet, add a minimal `src/routes/auth.tsx`.
-- No auth gate on landing or `/contact`.
+Four plan cards (3rd highlighted as most popular), monthly billing, each with CTA to `/contact` (Enterprise → "Talk to Sales").
 
-## Server functions (all `.functions.ts`, `requireSupabaseAuth`)
 
-- `getDashboardOverview` — returns status banner text + 4 hero-card metrics (calls today, appointments today, revenue opps captured this week, missed calls prevented this week).
-- `getLiveActivity` — latest 10 activity events, realtime-subscribable.
-- `getRecentCalls` — last 25 calls with outcome + duration.
-- `seedDemoData` — one-shot: if the signed-in user has zero calls, insert a realistic demo dataset so the dashboard is immediately populated. Called from the loader.
+| Plan       | Price   | Includes                                                                                 |
+| ---------- | ------- | ---------------------------------------------------------------------------------------- |
+| Free       | $0/mo   | Inbound calls only · 10 minutes/month, renews monthly                                    |
+| Starter    | $50/mo  | 150 minutes/month · Gmail + CRM integrations · booking & appointment taking              |
+| Growth     | $500/mo | 500 minutes/month · everything in Starter · outbound calls · lead qualification & upsell |
+| Enterprise | Custom  | Unlimited scale, dedicated number pool, SSO, custom integrations, priority support       |
 
-## UI components (all new, under `src/components/dashboard/`)
 
-Design: white bg, subtle gray borders (`border-neutral-200`), generous spacing, Inter typography, green for healthy, amber/red only for actionable alerts. No Tesla-red branding on this route — it's a distinct product surface.
+Plus a short FAQ strip and the same nav/footer.
 
-- `DashboardLayout.tsx` — responsive shell
-  - Desktop (`lg+`): fixed left sidebar (240px) with logo, nav items (Overview, Calls, Appointments, Settings), user chip at bottom. Main content `max-w-6xl` with generous padding.
-  - Mobile: top bar with hamburger + business name; fixed bottom nav (Home / Calls / Appts / More) with active state. Hamburger opens a slide-in drawer.
-  - Vanilla React state (`useState`) for menu toggle — matches the "basic JS to toggle" ask.
-- `StatusBanner.tsx` — full-width rounded banner. Green dot + "Your AI Receptionist is working normally." Subtext with real counts from `getDashboardOverview`. Amber variant when `receptionist_status` != online.
-- `MetricCards.tsx` — grid `grid-cols-2 lg:grid-cols-4`, one `MetricCard` per stat with emoji icon, label, big number, subtle trend line/delta. Rounded, bordered, hover elevates.
-- `LiveActivityFeed.tsx` — "Live Activity" heading with pulsing green dot. Vertical list of events with left status indicator, title, subtext, relative timestamp. Live rows (`call_live`) show a subtle pulse and duration ticking. Subscribes to `activity_events` via Supabase realtime.
-- `RecentCallsTable.tsx` — "Recent Calls & Follow-ups". On desktop: table with Customer / Time / Outcome pill / Duration / Actions. On mobile: stacked card per row. Actions per row: `▶ Listen`, `📄 Read Summary` (opens a shadcn Sheet with the call summary), and a prominent `📞 Call Back` (only for `missed` outcome; uses `tel:` link).
+## 4. Footer rewrite
 
-## Page composition
+Product-focused links only: Features, Pricing, Integrations, Live Demo, Contact, Privacy, Terms. Oversized wordmark becomes **IRIS BY CLOVA**. Copyright "Clova © 2026".
 
-`src/routes/_authenticated/dashboard.tsx`:
+## 5. ElevenLabs voice widget
 
-```
-DashboardLayout
-├─ StatusBanner
-├─ MetricCards
-├─ LiveActivityFeed
-└─ RecentCallsTable
-```
+Mount `<elevenlabs-convai agent-id="agent_9401ky6jnb3betyr39bprns2q225">` globally with the `@elevenlabs/convai-widget-embed` script loaded from the root route head, so it floats on every page. The "Listen to Iris in Action" CTA and the existing call card stay as-is.
 
-Loader primes TanStack Query via `ensureQueryData` for overview + recent calls + live activity; components read with `useSuspenseQuery`. `errorComponent` + `notFoundComponent` set. Route `head()` gets its own title/description: "Dashboard — Iris".
+### Technical notes
 
-## Landing page link
-
-Add a small "Sign in" / "Dashboard" link in the existing Nav (desktop + mobile menu) that goes to `/dashboard`. Everything else on landing is untouched.
-
-## Out of scope
-
-- Real telephony integration, recordings playback (buttons open a placeholder Sheet).
-- Settings pages, billing, team management.
-- Notifications, exports.
-
-## Verification
-
-After build: sign in, hit `/dashboard`, confirm seed data appears, banner is green, metrics render, activity feed streams a new row when inserted, table actions work, mobile layout uses bottom nav + hamburger drawer with no horizontal scroll at 375px.
+- New route file `src/routes/pricing.tsx` + `src/components/iris/PricingSection.tsx`.
+- Script tag added via `__root.tsx` `head({ scripts })`; the custom element is rendered client-side only to avoid SSR/hydration issues.
+- Nav gains a "Pricing" link; scrolled-pill state keeps logo + active label + CTA behavior unchanged.
+- Uploaded images go through `lovable-assets` pointers rather than being copied into the repo (favicon excepted).
+- Dashboard routes are untouched.
