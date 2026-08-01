@@ -20,5 +20,6 @@ export function ConvaiWidget() {
 
   if (!mounted) return null;
 
-  return <elevenlabs-convai agent-id={AGENT_ID}></elevenlabs-convai>;
+  return createElement("elevenlabs-convai", { "agent-id": AGENT_ID });
+
 }
