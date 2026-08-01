@@ -62,7 +62,7 @@ export function Hero() {
             <img
               src={irisAgent.url}
               alt="Iris, the Clova AI receptionist, wearing a headset at her desk"
-              className="relative z-10 w-full h-full object-contain object-bottom drop-shadow-[0_40px_60px_rgba(0,0,0,0.25)] animate-float"
+              className="relative z-10 w-full h-full object-contain object-bottom drop-shadow-[0_40px_60px_rgba(0,0,0,0.25)] animate-float-soft"
             />
           </div>
 
