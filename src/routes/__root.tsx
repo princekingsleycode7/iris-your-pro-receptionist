@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { ConvaiWidget } from "../components/iris/ConvaiWidget";
+import faviconAsset from "../assets/clova-logo.png.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -77,25 +79,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Iris by Tesla — The AI Receptionist for Enterprise" },
+      { title: "Iris by Clova — Never Miss Another Customer Again" },
       {
         name: "description",
         content:
-          "Iris is Tesla's autonomous AI receptionist. Zero wait. Human-grade voice. Enterprise scale.",
+          "Iris answers your calls instantly, books appointments, and qualifies leads day and night, so you never lose business to a missed call.",
       },
-      { name: "author", content: "Tesla" },
-      { property: "og:title", content: "Iris by Tesla — The AI Receptionist for Enterprise" },
+      { name: "author", content: "Clova" },
+      { property: "og:title", content: "Iris by Clova — Never Miss Another Customer Again" },
       {
         property: "og:description",
         content:
-          "Iris is Tesla's autonomous AI receptionist. Zero wait. Human-grade voice. Enterprise scale.",
+          "Iris answers your calls instantly, books appointments, and qualifies leads day and night, so you never lose business to a missed call.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: faviconAsset.url, type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
@@ -136,6 +138,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <ConvaiWidget />
     </QueryClientProvider>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useActiveSection } from "./useActiveSection";
+import { Logo } from "./Logo";
 
 const LINKS = [
   { id: "problem", label: "The Problem" },
@@ -47,11 +48,8 @@ export function Nav() {
             scrolled ? "h-12 px-5" : "h-16 px-6 md:px-10 max-w-7xl mx-auto"
           }`}
         >
-          <a
-            href="#top"
-            className="text-base font-black tracking-[0.3em] font-[family-name:var(--font-display)] shrink-0"
-          >
-            TESLA
+          <a href="#top" className="shrink-0">
+            <Logo size={scrolled ? 20 : 24} />
           </a>
 
           {/* Desktop full nav — visible only lg+ AND not scrolled */}
@@ -85,6 +83,14 @@ export function Nav() {
 
           <div className="flex items-center gap-2 shrink-0">
             <Link
+              to="/pricing"
+              className={`hidden sm:inline-flex text-tesla-dark/80 hover:text-tesla-red font-semibold uppercase tracking-[0.15em] transition-colors ${
+                scrolled ? "text-[10px]" : "text-[11px]"
+              }`}
+            >
+              Pricing
+            </Link>
+            <Link
               to="/dashboard"
               className={`hidden sm:inline-flex text-tesla-dark/80 hover:text-tesla-red font-semibold uppercase tracking-[0.15em] transition-colors ${
                 scrolled ? "text-[10px]" : "text-[11px]"
@@ -98,7 +104,7 @@ export function Nav() {
                 scrolled ? "px-4 py-1.5 text-[10px]" : "px-5 py-2 text-[11px]"
               }`}
             >
-              Reserve
+              Try Free
             </Link>
 
 
@@ -159,11 +165,18 @@ export function Nav() {
               </a>
             ))}
             <Link
+              to="/pricing"
+              onClick={() => setOpen(false)}
+              className="py-4 border-b border-black/5 text-2xl font-black tracking-tight font-[family-name:var(--font-display)] text-tesla-dark hover:text-tesla-red transition-colors"
+            >
+              Pricing
+            </Link>
+            <Link
               to="/contact"
               onClick={() => setOpen(false)}
               className="mt-10 bg-tesla-dark text-white px-6 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-center hover:bg-tesla-red transition-colors"
             >
-              Reserve Access
+              Try Iris Free
             </Link>
           </div>
         </div>

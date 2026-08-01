@@ -1,21 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { Logo } from "@/components/iris/Logo";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
-      { title: "Contact Iris by Tesla — Reserve Enterprise Access" },
+      { title: "Contact Clova — Talk to the Iris Team" },
       {
         name: "description",
         content:
-          "Reach the Iris enterprise team. Reserve access, request a pilot, or ask anything about Tesla's AI receptionist.",
+          "Reach the Clova team. Start your free trial, request a demo, or ask anything about Iris, the AI receptionist.",
       },
-      { property: "og:title", content: "Contact Iris by Tesla" },
+      { property: "og:title", content: "Contact Clova" },
       {
         property: "og:description",
         content:
-          "Reach the Iris enterprise team. Reserve access, request a pilot, or ask anything about Tesla's AI receptionist.",
+          "Reach the Clova team. Start your free trial, request a demo, or ask anything about Iris, the AI receptionist.",
       },
     ],
   }),
@@ -45,9 +46,8 @@ function ContactPage() {
         <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-6 md:px-10">
           <Link
             to="/"
-            className="text-base font-black tracking-[0.3em] font-[family-name:var(--font-display)]"
           >
-            TESLA
+            <Logo />
           </Link>
           <Link
             to="/"
