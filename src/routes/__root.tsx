@@ -94,10 +94,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Iris by Clova — Never Miss Another Customer Again" },
+      { name: "twitter:description", content: "Iris answers your calls instantly, books appointments, and qualifies leads day and night, so you never lose business to a missed call." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/47558a9b-19af-4c29-a230-b26c3b27743f" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/47558a9b-19af-4c29-a230-b26c3b27743f" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: faviconAsset.url, type: "image/png" },
+      { rel: "icon", href: "/__l5e/assets-v1/1fcf76c9-4078-4c47-a086-cf3eec85b53d/clova-logo.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
