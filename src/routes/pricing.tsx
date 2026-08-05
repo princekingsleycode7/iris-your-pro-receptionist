@@ -25,11 +25,11 @@ export const Route = createFileRoute("/pricing")({
 
 const PLANS = [
   {
-    name: "Free",
-    price: "$0",
+    name: "Basic",
+    price: "$10",
     cadence: "/month",
     blurb: "Try Iris on your real calls.",
-    cta: "Start Free",
+    cta: "Choose Basic",
     featured: false,
     features: [
       "Inbound calls only",
