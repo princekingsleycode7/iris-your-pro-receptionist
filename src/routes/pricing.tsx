@@ -51,7 +51,7 @@ const PLANS = [
       "Gmail and CRM integrations",
       "Booking and appointment taking",
       "Call transfers to your staff",
-      "Everything in Free",
+      "Everything in Basic",
     ],
   },
   {
