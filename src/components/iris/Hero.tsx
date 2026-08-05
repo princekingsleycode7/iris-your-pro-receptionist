@@ -28,7 +28,7 @@ export function Hero() {
               to="/pricing"
               className="bg-tesla-dark text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all"
             >
-              Try Iris Free for 7 Days
+              Try Basic — $10
             </Link>
             <a
               href="#transcript"
