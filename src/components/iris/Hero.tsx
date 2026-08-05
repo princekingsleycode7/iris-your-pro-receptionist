@@ -51,7 +51,7 @@ export function Hero() {
             {/* depth rings */}
             <div className="absolute inset-0 grid place-items-center pointer-events-none">
               <div className="relative w-[92%] aspect-square">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-b from-stone-100 to-white ring-1 ring-black/5" />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-b from-tesla-stone to-white ring-1 ring-tesla-dark/5" />
                 <div className="absolute inset-6 rounded-full border border-tesla-red/15 animate-pulse-ring" />
                 <div
                   className="absolute inset-16 rounded-full border border-tesla-red/20 animate-pulse-ring"
