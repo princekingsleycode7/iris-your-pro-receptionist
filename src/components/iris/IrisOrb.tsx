@@ -1,7 +1,7 @@
 // Signature Iris visual: layered pulse rings + live waveform.
 export function IrisOrb() {
   return (
-    <div className="relative w-full aspect-[21/9] rounded-3xl bg-gradient-to-b from-stone-100 to-white ring-1 ring-black/5 overflow-hidden">
+    <div className="relative w-full aspect-[21/9] rounded-3xl bg-gradient-to-b from-tesla-stone to-white ring-1 ring-black/5 overflow-hidden">
       {/* Concentric pulse rings */}
       <div className="absolute inset-0 grid place-items-center">
         <div className="relative w-[420px] h-[420px] max-w-[80%] max-h-[80%]">

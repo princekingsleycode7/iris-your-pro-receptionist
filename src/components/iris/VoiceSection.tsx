@@ -36,7 +36,7 @@ export function VoiceSection() {
         <div className="mt-16 grid md:grid-cols-3 gap-6 text-left">
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 120}>
-              <div className="group h-full p-8 rounded-2xl border border-black/5 bg-stone-50 hover:bg-white hover:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.25)] transition-all duration-500">
+              <div className="group h-full p-8 rounded-2xl border border-black/5 bg-tesla-stone/60 hover:bg-white hover:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.25)] transition-all duration-500">
                 <div className="w-8 h-8 rounded-full bg-tesla-red/10 grid place-items-center mb-6">
                   <span className="w-2 h-2 rounded-full bg-tesla-red group-hover:scale-150 transition-transform duration-500" />
                 </div>

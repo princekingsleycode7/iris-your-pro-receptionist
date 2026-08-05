@@ -68,8 +68,8 @@ export function Hero() {
 
           <div className="mt-2 inline-flex items-center gap-2.5 rounded-full border border-black/10 bg-white/80 backdrop-blur px-5 py-2.5 shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 animate-ping" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+              <span className="absolute inline-flex h-full w-full rounded-full bg-clova-neon opacity-60 animate-ping" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-clova-neon" />
             </span>
             <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-tesla-dark">
               Online

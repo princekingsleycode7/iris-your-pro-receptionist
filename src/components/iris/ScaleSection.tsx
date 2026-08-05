@@ -2,7 +2,7 @@ import { Reveal } from "./Reveal";
 
 export function ScaleSection() {
   return (
-    <section id="scale" className="py-24 md:py-32 px-6 md:px-10 bg-stone-50">
+    <section id="scale" className="py-24 md:py-32 px-6 md:px-10 bg-tesla-stone/60">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         <Reveal>
           <div className="relative aspect-square rounded-3xl bg-white ring-1 ring-black/5 overflow-hidden">
