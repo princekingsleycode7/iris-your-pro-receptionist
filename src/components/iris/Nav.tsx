@@ -104,7 +104,7 @@ export function Nav() {
                 scrolled ? "px-4 py-1.5 text-[10px]" : "px-5 py-2 text-[11px]"
               }`}
             >
-              Try Free
+              Try Basic
             </Link>
 
 
@@ -176,7 +176,7 @@ export function Nav() {
               onClick={() => setOpen(false)}
               className="mt-10 bg-tesla-dark text-white px-6 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-center hover:bg-tesla-red transition-colors"
             >
-              Try Iris Free
+              Try Iris Basic
             </Link>
           </div>
         </div>

@@ -11,13 +11,13 @@ export const Route = createFileRoute("/pricing")({
       {
         name: "description",
         content:
-          "Simple plans for Iris, the AI receptionist by Clova. Start free with 10 minutes a month, or scale to outbound calls and lead qualification.",
+          "Simple plans for Iris, the AI receptionist by Clova. Start with Basic for 10 minutes a month, or scale to outbound calls and lead qualification.",
       },
       { property: "og:title", content: "Pricing — Iris AI Receptionist by Clova" },
       {
         property: "og:description",
         content:
-          "Free, Starter, Growth, and Enterprise plans for the AI receptionist that never misses a call.",
+          "Basic, Starter, Growth, and Enterprise plans for the AI receptionist that never misses a call.",
       },
     ],
   }),
@@ -25,11 +25,11 @@ export const Route = createFileRoute("/pricing")({
 
 const PLANS = [
   {
-    name: "Free",
-    price: "$0",
+    name: "Basic",
+    price: "$10",
     cadence: "/month",
     blurb: "Try Iris on your real calls.",
-    cta: "Start Free",
+    cta: "Choose Basic",
     featured: false,
     features: [
       "Inbound calls only",
@@ -51,7 +51,7 @@ const PLANS = [
       "Gmail and CRM integrations",
       "Booking and appointment taking",
       "Call transfers to your staff",
-      "Everything in Free",
+      "Everything in Basic",
     ],
   },
   {
