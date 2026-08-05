@@ -117,7 +117,7 @@ export function ProblemSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight font-[family-name:var(--font-display)] leading-[1.05] max-w-3xl">
             Customer service is broken. We fixed the logic.
           </h2>
-          <p className="mt-6 text-stone-400 leading-relaxed max-w-xl text-base md:text-lg">
+          <p className="mt-6 text-clova-sage leading-relaxed max-w-xl text-base md:text-lg">
             Hold music is a failure of scale. Scripted bots are a failure of
             intelligence. Iris processes intent in real time — no customer ever
             repeats themselves.

@@ -26,7 +26,7 @@ export function CTASection() {
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight font-[family-name:var(--font-display)] leading-[1.02]">
               The Future is Calling.
             </h2>
-            <p className="mt-6 text-lg text-stone-400 max-w-lg leading-relaxed">
+            <p className="mt-6 text-lg text-clova-sage max-w-lg leading-relaxed">
               Join the enterprise pilot program and redefine what it means to
               care for your customers.
             </p>

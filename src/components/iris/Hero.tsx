@@ -51,7 +51,7 @@ export function Hero() {
             {/* depth rings */}
             <div className="absolute inset-0 grid place-items-center pointer-events-none">
               <div className="relative w-[92%] aspect-square">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-b from-stone-100 to-white ring-1 ring-black/5" />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-b from-tesla-stone to-white ring-1 ring-tesla-dark/5" />
                 <div className="absolute inset-6 rounded-full border border-tesla-red/15 animate-pulse-ring" />
                 <div
                   className="absolute inset-16 rounded-full border border-tesla-red/20 animate-pulse-ring"
@@ -68,8 +68,8 @@ export function Hero() {
 
           <div className="mt-2 inline-flex items-center gap-2.5 rounded-full border border-black/10 bg-white/80 backdrop-blur px-5 py-2.5 shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 animate-ping" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+              <span className="absolute inline-flex h-full w-full rounded-full bg-clova-neon opacity-60 animate-ping" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-clova-neon" />
             </span>
             <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-tesla-dark">
               Online
