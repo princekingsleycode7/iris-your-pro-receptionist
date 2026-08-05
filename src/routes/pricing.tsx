@@ -17,7 +17,7 @@ export const Route = createFileRoute("/pricing")({
       {
         property: "og:description",
         content:
-          "Free, Starter, Growth, and Enterprise plans for the AI receptionist that never misses a call.",
+          "Basic, Starter, Growth, and Enterprise plans for the AI receptionist that never misses a call.",
       },
     ],
   }),
