@@ -27,6 +27,9 @@ export function Nav() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    window.dispatchEvent(
+      new CustomEvent("iris:menu-toggle", { detail: open })
+    );
     return () => {
       document.body.style.overflow = "";
     };
