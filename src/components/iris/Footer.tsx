@@ -22,7 +22,7 @@ export function Footer() {
           <div className="md:col-span-2 max-w-sm">
             <Logo className="mb-5" />
             <p className="text-sm text-tesla-gray leading-relaxed">
-              Iris is the AI receptionist by Clova. She answers every call, books
+              Iris is the AI receptionist by Clover Nexus. She answers every call, books
               appointments, qualifies leads, and keeps your customers happy around
               the clock.
             </p>
@@ -59,13 +59,14 @@ export function Footer() {
 
         {/* Oversized bold wordmark */}
         <div className="select-none pointer-events-none overflow-hidden">
-          <h2 className="text-[22vw] md:text-[16vw] leading-[0.85] font-black tracking-[-0.04em] font-[family-name:var(--font-display)] text-tesla-dark/[0.06] whitespace-nowrap text-center">
-            IRIS BY CLOVA
+          <h2 className="text-[17vw] md:text-[13vw] leading-[0.85] font-black tracking-[-0.04em] font-[family-name:var(--font-display)] text-tesla-dark/[0.06] text-center">
+            <span className="block whitespace-nowrap">IRIS BY</span>
+            <span className="block whitespace-nowrap">CLOVER NEXUS</span>
           </h2>
         </div>
 
         <div className="mt-12 pt-8 border-t border-black/5 flex flex-wrap justify-between gap-4 text-[10px] font-bold uppercase tracking-[0.25em] text-tesla-dark/40">
-          <span>Clova &copy; 2026</span>
+          <span>Clover Nexus &copy; 2026</span>
           <div className="flex gap-8">
             <Link to="/pricing" className="hover:text-tesla-red">Pricing</Link>
             <Link to="/contact" className="hover:text-tesla-red">Contact</Link>
