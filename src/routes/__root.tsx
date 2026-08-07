@@ -79,14 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Iris by Clova — Never Miss Another Customer Again" },
+      { title: "Iris by Clover Nexus — Never Miss Another Customer Again" },
       {
         name: "description",
         content:
           "Iris answers your calls instantly, books appointments, and qualifies leads day and night, so you never lose business to a missed call.",
       },
-      { name: "author", content: "Clova" },
-      { property: "og:title", content: "Iris by Clova — Never Miss Another Customer Again" },
+      { name: "author", content: "Clover Nexus" },
+      { property: "og:title", content: "Iris by Clover Nexus — Never Miss Another Customer Again" },
       {
         property: "og:description",
         content:
@@ -94,7 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Iris by Clova — Never Miss Another Customer Again" },
+      { name: "twitter:title", content: "Iris by Clover Nexus — Never Miss Another Customer Again" },
       { name: "twitter:description", content: "Iris answers your calls instantly, books appointments, and qualifies leads day and night, so you never lose business to a missed call." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/47558a9b-19af-4c29-a230-b26c3b27743f" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/47558a9b-19af-4c29-a230-b26c3b27743f" },

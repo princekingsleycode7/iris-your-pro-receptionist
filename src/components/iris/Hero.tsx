@@ -12,7 +12,7 @@ export function Hero() {
         {/* Left — message */}
         <div className="text-center lg:text-left animate-fade-up">
           <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.35em] text-tesla-gray mb-4 md:mb-5">
-            Meet Iris by Clova
+            Meet Iris by Clover Nexus
           </p>
           <h1 className="text-[2.6rem] leading-[1.02] sm:text-6xl md:text-7xl font-black tracking-tight font-[family-name:var(--font-display)]">
             Never Miss Another Customer Again.
@@ -61,7 +61,7 @@ export function Hero() {
             </div>
             <img
               src={irisAgent.url}
-              alt="Iris, the Clova AI receptionist, wearing a headset at her desk"
+              alt="Iris, the Clover Nexus AI receptionist, wearing a headset at her desk"
               className="relative z-10 w-full h-full object-contain object-bottom drop-shadow-[0_40px_60px_rgba(0,0,0,0.25)] animate-float-soft"
             />
           </div>

@@ -6,17 +6,17 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
-      { title: "Contact Clova — Talk to the Iris Team" },
+      { title: "Contact Clover Nexus — Talk to the Iris Team" },
       {
         name: "description",
         content:
-          "Reach the Clova team. Start your free trial, request a demo, or ask anything about Iris, the AI receptionist.",
+          "Reach the Clover Nexus team. Start your free trial, request a demo, or ask anything about Iris, the AI receptionist.",
       },
-      { property: "og:title", content: "Contact Clova" },
+      { property: "og:title", content: "Contact Clover Nexus" },
       {
         property: "og:description",
         content:
-          "Reach the Clova team. Start your free trial, request a demo, or ask anything about Iris, the AI receptionist.",
+          "Reach the Clover Nexus team. Start your free trial, request a demo, or ask anything about Iris, the AI receptionist.",
       },
     ],
   }),

@@ -13,14 +13,14 @@ export function Logo({
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <img
         src={logoAsset.url}
-        alt="Clova logo"
+        alt="Clover Nexus logo"
         width={size}
         height={size}
         className={invert ? "invert" : ""}
         style={{ width: size, height: size }}
       />
-      <span className="text-base font-black tracking-[0.28em] font-[family-name:var(--font-display)]">
-        CLOVA
+      <span className="text-sm sm:text-base font-black tracking-[0.16em] whitespace-nowrap font-[family-name:var(--font-display)]">
+        CLOVER NEXUS
       </span>
     </span>
   );
