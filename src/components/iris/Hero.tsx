@@ -25,7 +25,8 @@ export function Hero() {
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
             <Link
-              to="/pricing"
+              to="/auth"
+
               className="bg-tesla-dark text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all"
             >
               Try Basic — $10

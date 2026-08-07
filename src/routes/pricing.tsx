@@ -192,7 +192,8 @@ function PricingPage() {
                 </ul>
 
                 <Link
-                  to="/contact"
+                  to={p.name === "Enterprise" ? "/contact" : "/auth"}
+
                   className={`mt-8 rounded-full px-6 py-3.5 text-center text-xs font-bold uppercase tracking-[0.15em] transition-all ${
                     p.featured
                       ? "bg-white text-tesla-dark hover:bg-tesla-red hover:text-white"

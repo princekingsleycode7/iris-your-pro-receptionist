@@ -102,7 +102,8 @@ export function Nav() {
               Dashboard
             </Link>
             <Link
-              to="/contact"
+              to="/auth"
+
               className={`bg-tesla-dark text-white rounded-full font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all ${
                 scrolled ? "px-4 py-1.5 text-[10px]" : "px-5 py-2 text-[11px]"
               }`}
@@ -175,7 +176,8 @@ export function Nav() {
               Pricing
             </Link>
             <Link
-              to="/contact"
+              to="/auth"
+
               onClick={() => setOpen(false)}
               className="mt-10 bg-tesla-dark text-white px-6 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-center hover:bg-tesla-red transition-colors"
             >
