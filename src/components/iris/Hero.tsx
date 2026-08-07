@@ -12,7 +12,7 @@ export function Hero() {
         {/* Left — message */}
         <div className="text-center lg:text-left animate-fade-up">
           <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.35em] text-tesla-gray mb-4 md:mb-5">
-            Meet Iris by Clova
+            Meet Iris by Clover Nexus
           </p>
           <h1 className="text-[2.6rem] leading-[1.02] sm:text-6xl md:text-7xl font-black tracking-tight font-[family-name:var(--font-display)]">
             Never Miss Another Customer Again.

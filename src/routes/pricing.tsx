@@ -7,13 +7,13 @@ export const Route = createFileRoute("/pricing")({
   component: PricingPage,
   head: () => ({
     meta: [
-      { title: "Pricing — Iris AI Receptionist by Clova" },
+      { title: "Pricing — Iris AI Receptionist by Clover Nexus" },
       {
         name: "description",
         content:
-          "Simple plans for Iris, the AI receptionist by Clova. Start with Basic for 10 minutes a month, or scale to outbound calls and lead qualification.",
+          "Simple plans for Iris, the AI receptionist by Clover Nexus. Start with Basic for 10 minutes a month, or scale to outbound calls and lead qualification.",
       },
-      { property: "og:title", content: "Pricing — Iris AI Receptionist by Clova" },
+      { property: "og:title", content: "Pricing — Iris AI Receptionist by Clover Nexus" },
       {
         property: "og:description",
         content:
