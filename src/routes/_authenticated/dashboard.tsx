@@ -6,7 +6,7 @@ import {
   getDashboardOverview,
   getLiveActivity,
   getRecentCalls,
-} from "@/lib/dashboard.functions";
+} from "@/lib/elevenlabs.functions";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { StatusBanner } from "@/components/dashboard/StatusBanner";
 import { MetricCards } from "@/components/dashboard/MetricCards";
