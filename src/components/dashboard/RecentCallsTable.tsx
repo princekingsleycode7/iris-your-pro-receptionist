@@ -199,6 +199,28 @@ export function RecentCallsTable({ calls }: { calls: Call[] }) {
             <p className="mt-4 text-sm text-neutral-700 leading-relaxed">
               {open.summary ?? "No summary available."}
             </p>
+
+            <div className="mt-4">
+              {audioState === "loading" && (
+                <div className="text-xs text-neutral-500">Loading recording…</div>
+              )}
+              {audioState === "missing" && (
+                <div className="text-xs text-neutral-500">No recording available for this call.</div>
+              )}
+              {audioUrl && <audio controls src={audioUrl} className="w-full" />}
+            </div>
+
+            {open.transcript && (
+              <details className="mt-4">
+                <summary className="text-xs font-semibold text-neutral-600 cursor-pointer">
+                  View full transcript
+                </summary>
+                <pre className="mt-2 max-h-52 overflow-y-auto whitespace-pre-wrap rounded-lg bg-neutral-50 p-3 text-xs text-neutral-700">
+                  {open.transcript}
+                </pre>
+              </details>
+            )}
+
             {open.phone && (
               <a
                 href={`tel:${open.phone}`}
