@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { getCallAudio } from "@/lib/elevenlabs.functions";
 
 type Call = {
   id: string;
@@ -8,6 +10,7 @@ type Call = {
   duration_seconds: number;
   outcome: "appointment_booked" | "transferred" | "voicemail" | "missed" | "info_only";
   summary: string | null;
+  transcript?: string | null;
   revenue_opportunity_cents: number;
 };
 
