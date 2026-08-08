@@ -94,7 +94,7 @@ export function Nav() {
           )}
 
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0 justify-self-end">
             <Link
               to="/pricing"
               className={`hidden sm:inline-flex text-tesla-dark/80 hover:text-tesla-red font-semibold uppercase tracking-[0.15em] transition-colors ${
@@ -113,9 +113,10 @@ export function Nav() {
             </Link>
             <Link
               to="/auth"
-
-              className={`bg-tesla-dark text-white rounded-full font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all ${
-                scrolled ? "px-4 py-1.5 text-[10px]" : "px-5 py-2 text-[11px]"
+              className={`items-center bg-tesla-dark text-white rounded-full font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all ${
+                scrolled
+                  ? "hidden sm:inline-flex h-8 px-4 text-[10px]"
+                  : "inline-flex h-9 px-5 text-[11px]"
               }`}
             >
               Try Basic
@@ -128,8 +129,11 @@ export function Nav() {
               aria-label="Open menu"
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="lg:hidden ml-1 w-9 h-9 grid place-items-center rounded-full hover:bg-black/5 transition"
+              className={`lg:hidden grid place-items-center rounded-full hover:bg-black/5 transition ${
+                scrolled ? "w-8 h-8" : "ml-1 w-9 h-9"
+              }`}
             >
+
               <span className="relative block w-5 h-3">
                 <span
                   className={`absolute left-0 top-0 w-5 h-[2px] bg-tesla-dark transition-transform duration-300 ${
