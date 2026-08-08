@@ -29,20 +29,8 @@ export function LiveActivityFeed({ initial }: { initial: Event[] }) {
   const [events, setEvents] = useState<Event[]>(initial);
 
   useEffect(() => {
-    const channel = supabase
-      .channel("activity_events_stream")
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "activity_events" },
-        (payload) => {
-          setEvents((prev) => [payload.new as Event, ...prev].slice(0, 10));
-        },
-      )
-      .subscribe();
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, []);
+    setEvents(initial);
+  }, [initial]);
 
   return (
     <section className="bg-white border border-neutral-200 rounded-2xl">
