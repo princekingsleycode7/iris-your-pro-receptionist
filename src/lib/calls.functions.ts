@@ -4,14 +4,13 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 export const getCalls = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const { supabase, userId } = context;
+    const { data } = await context.supabase
+      .from("user_settings")
+      .select("agent_id")
+      .eq("user_id", context.userId)
+      .maybeSingle();
 
-    const { data, error } = await supabase
-      .from("calls")
-      .select("id, caller_name, phone, started_at, duration_seconds, outcome, summary, transcript, revenue_opportunity_cents, raw_payload")
-      .eq("user_id", userId)
-      .order("started_at", { ascending: false });
-
-    if (error) throw new Error(error.message);
-    return data ?? [];
+    const agentId = ((data as any)?.agent_id ?? "").trim();
+    const { callsForAgent } = await import("./elevenlabs.server");
+    return callsForAgent(agentId, 200);
   });

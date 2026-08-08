@@ -47,12 +47,17 @@ export function Nav() {
         }`}
       >
         <div
-          className={`flex items-center justify-between transition-all duration-500 ${
-            scrolled ? "h-12 px-5" : "h-16 px-6 md:px-10 max-w-7xl mx-auto"
+          className={`transition-all duration-500 ${
+            scrolled
+              ? "h-12 px-3 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:flex sm:items-center sm:justify-between sm:px-5"
+              : "h-16 px-6 md:px-10 max-w-7xl mx-auto flex items-center justify-between"
           }`}
         >
           <a href="#top" className="shrink-0">
-            <Logo size={scrolled ? 20 : 24} />
+            <Logo
+              size={scrolled ? 18 : 24}
+              textClassName={scrolled ? "hidden sm:inline" : ""}
+            />
           </a>
 
           {/* Desktop full nav — visible only lg+ AND not scrolled */}
@@ -74,17 +79,22 @@ export function Nav() {
             </div>
           )}
 
-          {/* Scrolled state: show active section pill (lg+) */}
-          {scrolled && activeLabel && (
-            <div className="hidden lg:flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-tesla-dark/70">
-              <span className="w-1.5 h-1.5 rounded-full bg-tesla-red animate-pulse" />
-              <span key={activeLabel} className="animate-fade-in">
-                {activeLabel}
-              </span>
+          {/* Scrolled state: show active section pill */}
+          {scrolled && (
+            <div className="flex min-w-0 items-center justify-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-tesla-dark/70">
+              {activeLabel && (
+                <>
+                  <span className="w-1.5 h-1.5 shrink-0 rounded-full bg-tesla-red animate-pulse" />
+                  <span key={activeLabel} className="truncate animate-fade-in">
+                    {activeLabel}
+                  </span>
+                </>
+              )}
             </div>
           )}
 
-          <div className="flex items-center gap-2 shrink-0">
+
+          <div className="flex items-center gap-2 shrink-0 justify-self-end">
             <Link
               to="/pricing"
               className={`hidden sm:inline-flex text-tesla-dark/80 hover:text-tesla-red font-semibold uppercase tracking-[0.15em] transition-colors ${
@@ -103,9 +113,10 @@ export function Nav() {
             </Link>
             <Link
               to="/auth"
-
-              className={`bg-tesla-dark text-white rounded-full font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all ${
-                scrolled ? "px-4 py-1.5 text-[10px]" : "px-5 py-2 text-[11px]"
+              className={`items-center bg-tesla-dark text-white rounded-full font-bold uppercase tracking-[0.15em] hover:bg-tesla-red transition-all ${
+                scrolled
+                  ? "hidden sm:inline-flex h-8 px-4 text-[10px]"
+                  : "inline-flex h-9 px-5 text-[11px]"
               }`}
             >
               Try Basic
@@ -118,8 +129,11 @@ export function Nav() {
               aria-label="Open menu"
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="lg:hidden ml-1 w-9 h-9 grid place-items-center rounded-full hover:bg-black/5 transition"
+              className={`lg:hidden grid place-items-center rounded-full hover:bg-black/5 transition ${
+                scrolled ? "w-8 h-8" : "ml-1 w-9 h-9"
+              }`}
             >
+
               <span className="relative block w-5 h-3">
                 <span
                   className={`absolute left-0 top-0 w-5 h-[2px] bg-tesla-dark transition-transform duration-300 ${

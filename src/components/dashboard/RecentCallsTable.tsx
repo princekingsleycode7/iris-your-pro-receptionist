@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { getCallAudio } from "@/lib/elevenlabs.functions";
 
 type Call = {
   id: string;
@@ -8,6 +10,7 @@ type Call = {
   duration_seconds: number;
   outcome: "appointment_booked" | "transferred" | "voicemail" | "missed" | "info_only";
   summary: string | null;
+  transcript?: string | null;
   revenue_opportunity_cents: number;
 };
 
@@ -36,6 +39,31 @@ function fmtDuration(s: number) {
 
 export function RecentCallsTable({ calls }: { calls: Call[] }) {
   const [open, setOpen] = useState<Call | null>(null);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [audioState, setAudioState] = useState<"idle" | "loading" | "missing">("idle");
+  const fetchAudio = useServerFn(getCallAudio);
+
+  useEffect(() => {
+    setAudioUrl(null);
+    setAudioState("idle");
+    if (!open) return;
+    let cancelled = false;
+    setAudioState("loading");
+    fetchAudio({ data: { conversationId: open.id } })
+      .then((res: any) => {
+        if (cancelled) return;
+        if (!res?.base64) {
+          setAudioState("missing");
+          return;
+        }
+        setAudioUrl(`data:audio/${res.format || "mp3"};base64,${res.base64}`);
+        setAudioState("idle");
+      })
+      .catch(() => !cancelled && setAudioState("missing"));
+    return () => {
+      cancelled = true;
+    };
+  }, [open]);
 
   return (
     <>
@@ -171,6 +199,28 @@ export function RecentCallsTable({ calls }: { calls: Call[] }) {
             <p className="mt-4 text-sm text-neutral-700 leading-relaxed">
               {open.summary ?? "No summary available."}
             </p>
+
+            <div className="mt-4">
+              {audioState === "loading" && (
+                <div className="text-xs text-neutral-500">Loading recording…</div>
+              )}
+              {audioState === "missing" && (
+                <div className="text-xs text-neutral-500">No recording available for this call.</div>
+              )}
+              {audioUrl && <audio controls src={audioUrl} className="w-full" />}
+            </div>
+
+            {open.transcript && (
+              <details className="mt-4">
+                <summary className="text-xs font-semibold text-neutral-600 cursor-pointer">
+                  View full transcript
+                </summary>
+                <pre className="mt-2 max-h-52 overflow-y-auto whitespace-pre-wrap rounded-lg bg-neutral-50 p-3 text-xs text-neutral-700">
+                  {open.transcript}
+                </pre>
+              </details>
+            )}
+
             {open.phone && (
               <a
                 href={`tel:${open.phone}`}

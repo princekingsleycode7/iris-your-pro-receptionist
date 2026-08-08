@@ -130,7 +130,24 @@ function SettingsPage() {
               className="w-full px-3 py-2 text-sm rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-900"
             />
           </div>
+
+          <div>
+            <label className="block text-xs font-medium text-neutral-700 mb-1">
+              Receptionist ID
+            </label>
+            <input
+              type="text"
+              placeholder="Paste the ID for your receptionist line"
+              value={(form as any).agent_id || ""}
+              onChange={(e) => setForm({ ...form, agent_id: e.target.value } as any)}
+              className="w-full px-3 py-2 text-sm rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-900"
+            />
+            <p className="mt-1 text-[11px] text-neutral-500">
+              Links your dashboard to the calls your receptionist handles.
+            </p>
+          </div>
         </div>
+
 
         {/* Save Bar */}
         <div className="flex items-center justify-between pt-4">
