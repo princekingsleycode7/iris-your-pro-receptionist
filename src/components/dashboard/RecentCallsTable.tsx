@@ -39,6 +39,31 @@ function fmtDuration(s: number) {
 
 export function RecentCallsTable({ calls }: { calls: Call[] }) {
   const [open, setOpen] = useState<Call | null>(null);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [audioState, setAudioState] = useState<"idle" | "loading" | "missing">("idle");
+  const fetchAudio = useServerFn(getCallAudio);
+
+  useEffect(() => {
+    setAudioUrl(null);
+    setAudioState("idle");
+    if (!open) return;
+    let cancelled = false;
+    setAudioState("loading");
+    fetchAudio({ data: { conversationId: open.id } })
+      .then((res: any) => {
+        if (cancelled) return;
+        if (!res?.base64) {
+          setAudioState("missing");
+          return;
+        }
+        setAudioUrl(`data:audio/${res.format || "mp3"};base64,${res.base64}`);
+        setAudioState("idle");
+      })
+      .catch(() => !cancelled && setAudioState("missing"));
+    return () => {
+      cancelled = true;
+    };
+  }, [open]);
 
   return (
     <>
