@@ -55,13 +55,28 @@ function DashboardContent() {
   const callsFn = useServerFn(getRecentCalls);
 
   const overview = useSuspenseQuery(
-    queryOptions({ queryKey: ["dashboard-overview"], queryFn: () => overviewFn() }),
+    queryOptions({
+      queryKey: ["dashboard-overview"],
+      queryFn: () => overviewFn(),
+      refetchInterval: 15_000,
+      refetchOnWindowFocus: true,
+    }),
   );
   const activity = useSuspenseQuery(
-    queryOptions({ queryKey: ["dashboard-activity"], queryFn: () => activityFn() }),
+    queryOptions({
+      queryKey: ["dashboard-activity"],
+      queryFn: () => activityFn(),
+      refetchInterval: 15_000,
+      refetchOnWindowFocus: true,
+    }),
   );
   const calls = useSuspenseQuery(
-    queryOptions({ queryKey: ["dashboard-calls"], queryFn: () => callsFn() }),
+    queryOptions({
+      queryKey: ["dashboard-calls"],
+      queryFn: () => callsFn(),
+      refetchInterval: 30_000,
+      refetchOnWindowFocus: true,
+    }),
   );
 
   const o = overview.data;
