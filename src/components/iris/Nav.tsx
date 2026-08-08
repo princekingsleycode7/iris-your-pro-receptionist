@@ -47,12 +47,17 @@ export function Nav() {
         }`}
       >
         <div
-          className={`flex items-center justify-between transition-all duration-500 ${
-            scrolled ? "h-12 px-5" : "h-16 px-6 md:px-10 max-w-7xl mx-auto"
+          className={`transition-all duration-500 ${
+            scrolled
+              ? "h-12 px-3 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:flex sm:items-center sm:justify-between sm:px-5"
+              : "h-16 px-6 md:px-10 max-w-7xl mx-auto flex items-center justify-between"
           }`}
         >
           <a href="#top" className="shrink-0">
-            <Logo size={scrolled ? 20 : 24} />
+            <Logo
+              size={scrolled ? 18 : 24}
+              textClassName={scrolled ? "hidden sm:inline" : ""}
+            />
           </a>
 
           {/* Desktop full nav — visible only lg+ AND not scrolled */}
@@ -74,15 +79,20 @@ export function Nav() {
             </div>
           )}
 
-          {/* Scrolled state: show active section pill (lg+) */}
-          {scrolled && activeLabel && (
-            <div className="hidden lg:flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-tesla-dark/70">
-              <span className="w-1.5 h-1.5 rounded-full bg-tesla-red animate-pulse" />
-              <span key={activeLabel} className="animate-fade-in">
-                {activeLabel}
-              </span>
+          {/* Scrolled state: show active section pill */}
+          {scrolled && (
+            <div className="flex min-w-0 items-center justify-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-tesla-dark/70">
+              {activeLabel && (
+                <>
+                  <span className="w-1.5 h-1.5 shrink-0 rounded-full bg-tesla-red animate-pulse" />
+                  <span key={activeLabel} className="truncate animate-fade-in">
+                    {activeLabel}
+                  </span>
+                </>
+              )}
             </div>
           )}
+
 
           <div className="flex items-center gap-2 shrink-0">
             <Link
