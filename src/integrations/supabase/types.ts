@@ -150,6 +150,7 @@ export type Database = {
       }
       user_settings: {
         Row: {
+          agent_id: string
           cal_com_api_key: string
           cal_com_event_type_id: string
           created_at: string
@@ -163,6 +164,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          agent_id?: string
           cal_com_api_key?: string
           cal_com_event_type_id?: string
           created_at?: string
@@ -176,6 +178,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          agent_id?: string
           cal_com_api_key?: string
           cal_com_event_type_id?: string
           created_at?: string
