@@ -9,6 +9,7 @@ export type ReceptionistSettings = {
   cal_com_api_key: string;
   cal_com_event_type_id: string;
   timezone: string;
+  agent_id: string;
 };
 
 export const getSettings = createServerFn({ method: "GET" })
@@ -33,6 +34,7 @@ export const getSettings = createServerFn({ method: "GET" })
       cal_com_api_key: data?.cal_com_api_key ?? "",
       cal_com_event_type_id: data?.cal_com_event_type_id ?? "",
       timezone: data?.timezone ?? "Africa/Lagos",
+      agent_id: (data as any)?.agent_id ?? "",
     };
   });
 
