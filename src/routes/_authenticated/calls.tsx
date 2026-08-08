@@ -154,7 +154,7 @@ function CallsPage() {
                         </div>
                       ))
                     ) : (
-                      <p>{JSON.stringify(selectedCall.transcript, null, 2)}</p>
+                      <p className="whitespace-pre-wrap">{String(selectedCall.transcript)}</p>
                     )}
                   </div>
                 </div>
