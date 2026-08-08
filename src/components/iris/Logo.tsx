@@ -4,10 +4,12 @@ export function Logo({
   className = "",
   size = 26,
   invert = false,
+  textClassName = "",
 }: {
   className?: string;
   size?: number;
   invert?: boolean;
+  textClassName?: string;
 }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
